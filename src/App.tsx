@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route } from "react-router";
 import { Sidebar } from "./components/Sidebar";
 
 function App() {
