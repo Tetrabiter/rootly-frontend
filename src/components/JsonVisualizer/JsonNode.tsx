@@ -1,5 +1,5 @@
 import { useState, type MouseEventHandler } from "react";
-import type { JsonValue } from "../types/types";
+import type { JsonValue } from "../../types/types";
 
 interface JsonNodeProps {
     nodeKey?: string;
