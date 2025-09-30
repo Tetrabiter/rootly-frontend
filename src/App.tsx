@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
   return (
-      <div>
-        <h1 className="text-lime-300 text-2xl font-bold">Hello!</h1>
+      <div className="flex">
+        <Sidebar />
       </div>
   );
 }
