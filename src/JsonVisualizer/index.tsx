@@ -1,5 +1,5 @@
 import React from "react";
-import type { JsonValue } from "./types";
+import type { JsonValue } from "../types/types";
 import { JsonNode } from "./JsonNode";
 
 // Main JSON visualizer component
