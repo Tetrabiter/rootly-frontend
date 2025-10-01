@@ -10,7 +10,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "./ui/sidebar";
-import { Input } from "./ui/input";
 import { SearchInput } from "./SearchInput";
 
 export const HistoryList = () => {
