@@ -1,20 +1,19 @@
 import { create } from "zustand";
 
-export interface HistoryItem {}
+export interface HistoryItem {
+    a: number;
+}
 
 export interface HistoryStoreI {
     history: HistoryItem[];
-    addItem: () => void;
+    addItem: (item: HistoryItem) => void;
 }
 
-export const useHistory = create<HistoryStoreI>((set) => {
-    const addItem = async (item: HistoryItem) => {
+export const useHistory = create<HistoryStoreI>((set) => ({
+    history: [],
+    addItem: (item: HistoryItem) => {
         set((state) => ({
             history: [...state.history, item],
         }));
-    };
-    return {
-        history,
-        addItem,
-    };
-});
+    },
+}));
