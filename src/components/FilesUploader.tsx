@@ -5,12 +5,21 @@ import {
     DropzoneEmptyState,
     type DropzoneProps,
 } from "./ui/shadcn-io/dropzone";
+import ky from "ky";
 
 export const FilesUploader = ({ className }: DropzoneProps) => {
     const [files, setFiles] = useState<File[] | undefined>();
     const handleDrop = (files: File[]) => {
-        console.log(files);
+        // console.log(files);
         setFiles(files);
+        const formData = new FormData();
+        formData.append('file', files[0])
+        ky.post(
+            "https://lopsidedly-empowering-squirrelfish.cloudpub.ru/api/upload",
+            {
+                body: formData,
+            }
+        );
     };
     return (
         <Dropzone
