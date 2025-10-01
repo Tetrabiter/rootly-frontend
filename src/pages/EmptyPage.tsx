@@ -1,5 +1,4 @@
 import { FilesUploader } from "@/components/FilesUploader";
-import { Card } from "@/components/ui/card";
 
 export const EmptyPage = () => {
     // const logName =

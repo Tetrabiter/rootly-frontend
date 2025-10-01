@@ -18,6 +18,7 @@ function App() {
             "wss://lopsidedly-empowering-squirrelfish.cloudpub.ru/ws/connect"
         );
         setSocket(socket);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         socket.onopen = function (e) {
             console.log("[open] Соединение установлено");
             console.log("Отправляем данные на сервер");
