@@ -10,9 +10,12 @@ function App() {
     const { logId } = useParams();
     const setSocket = useStore((state) => state.setSocket);
     useEffect(() => {
-        http.get("set-user-id").then((res) => {
-            console.log("[set-user-id] куки-айди поставился");
-            const socket = new WebSocket(import.meta.env.VITE_BACKEND_WS);
+        http.get("set-user-id").then(async (res) => {
+            const token = await res.json();
+            // console.log("[set-user-id] куки-айди поставился");
+            const socket = new WebSocket(
+                import.meta.env.VITE_BACKEND_WS + `?user_id=${token}`
+            );
             setSocket(socket);
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             socket.onopen = function (e) {
