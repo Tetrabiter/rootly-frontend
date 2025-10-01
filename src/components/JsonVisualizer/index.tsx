@@ -1,6 +1,7 @@
 import React from "react";
 import type { JsonValue } from "../../types/types";
 import { JsonNode } from "./JsonNode";
+import { Card } from "../ui/card";
 
 // Main JSON visualizer component
 interface JsonVisualizerProps {
@@ -15,11 +16,11 @@ const JsonVisualizer: React.FC<JsonVisualizerProps> = ({
     className = "",
 }) => {
     return (
-        <div
-            className={`font-mono text-sm bg-white border border-gray-200 rounded-lg p-4 overflow-auto ${className}`}
+        <Card
+            className={`font-mono text-sm p-4 overflow-auto ${className}`}
         >
             <JsonNode value={data} initiallyExpanded={initiallyExpanded} />
-        </div>
+        </Card>
     );
 };
 

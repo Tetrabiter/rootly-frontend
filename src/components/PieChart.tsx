@@ -54,7 +54,7 @@ const chartConfig = {
 
 export function ChartPieLegend() {
   return (
-    <Card className="flex flex-col m-2">
+    <Card className="flex flex-col w-[30%]">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart - Legend</CardTitle>
         <CardDescription>All statistics from log</CardDescription>

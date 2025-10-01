@@ -47,13 +47,20 @@ export const JsonNode = ({
     };
     const handleCopy: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.stopPropagation();
+
         const ct = e.currentTarget;
-        ct.children[0].classList.add("hidden");
-        ct.children[1].classList.remove("hidden");
-        setTimeout(() => {
-            ct.children[0].classList.remove("hidden");
-            ct.children[1].classList.add("hidden");
-        }, 1000);
+        navigator.clipboard
+            .writeText(JSON.stringify(value))
+            .then(() => {
+                ct.children[0].classList.add("hidden");
+                ct.children[1].classList.remove("hidden");
+                setTimeout(() => {
+                    ct.children[0].classList.remove("hidden");
+                    ct.children[1].classList.add("hidden");
+                }, 1000);
+            })
+            .catch(() => {});
+
         console.log(value);
     };
 
@@ -64,7 +71,7 @@ export const JsonNode = ({
             className="cursor-pointer pl-2 h-full text-gray-400 opacity-0 hover:opacity-100 hover:text-gray-600 transition-opacity"
         >
             <svg
-                className="h-full w-[1em]"
+                className="h-full w-[1em] ml-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -163,7 +170,9 @@ export const JsonNode = ({
                         )}
                     </div>
                 )}
-                {expanded && <div className="text-gray-800 pl-[1.35em]">{"}"}</div>}
+                {expanded && (
+                    <div className="text-gray-800 pl-[1.35em]">{"}"}</div>
+                )}
             </div>
         );
     }
