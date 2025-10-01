@@ -2,7 +2,6 @@ import React from "react";
 import type { JsonValue } from "../../types/types";
 import { JsonNode } from "./JsonNode";
 import { Card } from "../ui/card";
-import { SearchForm } from "../search-form";
 
 // Main JSON visualizer component
 interface JsonVisualizerProps {
@@ -19,7 +18,6 @@ const JsonVisualizer: React.FC<JsonVisualizerProps> = ({
     const filteredData = data;
     return (
         <div className={className}>
-            <SearchForm className="mb-3"/>
             <JsonNode
                 value={filteredData}
                 initiallyExpanded={initiallyExpanded}
