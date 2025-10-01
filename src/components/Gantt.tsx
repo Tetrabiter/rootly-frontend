@@ -69,6 +69,7 @@ const initialFeatures: Feature[] = [
 ];
 
 export default function SimpleGanttChart() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [features, setFeatures] = useState<Feature[]>(initialFeatures);
 
     // Группируем задачи (в данном случае просто по статусу)
