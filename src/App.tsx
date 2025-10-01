@@ -1,10 +1,5 @@
-import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
-} from "./components/ui/sidebar";
 import { AppSidebar } from "./components/app-sidebar";
-import { Separator } from "./components/ui/separator";
+import SimpleGanttChart from "./components/Gantt";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -13,45 +8,12 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "./components/ui/breadcrumb";
+import { Separator } from "./components/ui/separator";
 import {
-    Area,
-    AreaChart,
-    Bar,
-    BarChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis,
-    YAxis,
-} from "recharts";
-import { GanttChart } from "./components/GanttChart";
-
-const data = [
-    {
-        level: 'TRACE',
-        name: "log1",
-        period: [1, 3],
-    },
-    {
-        level: 'DEBUG',
-        name: "log2",
-        period: [2, 6],
-    },
-    {
-        level: 'ERROR',
-        name: "log3",
-        period: [3, 15],
-    },
-    {
-        level: 'INFO',
-        name: "log3",
-        period: [3, 15],
-    },
-    {
-        level: 'WARN',
-        name: "log3",
-        period: [new Date, Date.now()+1],
-    },
-];
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from "./components/ui/sidebar";
 
 function App() {
     return (
@@ -83,11 +45,7 @@ function App() {
                         </Breadcrumb>
                     </header>
                     <div className="flex flex-1 flex-col gap-4 p-4">
-                        {/* <SimpleGanttChart /> */}
-                        {/* <GanttChart / */}
-                        <GanttChart
-                            data={data}
-                        />
+                        <SimpleGanttChart />
                     </div>
                 </SidebarInset>
             </SidebarProvider>
