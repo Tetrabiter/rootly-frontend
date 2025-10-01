@@ -5,3 +5,5 @@ export type JsonValue =
     | null
     | JsonValue[]
     | { [key: string]: JsonValue };
+
+export type LogLevel = "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
