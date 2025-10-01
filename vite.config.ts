@@ -12,10 +12,10 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // Необходимо для работы Docker
-    port: 5173, // Порт, который использует Vite по умолчанию
+    host: true, 
+    port: 5173, 
     watch: {
-      usePolling: true, // Решает проблему с горячей перезагрузкой на Windows/WSL
+      usePolling: true,
     },
   }
 })

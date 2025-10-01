@@ -1,5 +1,4 @@
 import { SearchForm } from "@/components/search-form";
-import { PanelRightClose, PanelRightOpen } from "lucide-react";
 import {
     Sidebar,
     SidebarContent,
