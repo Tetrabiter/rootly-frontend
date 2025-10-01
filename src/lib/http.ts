@@ -1,4 +1,5 @@
 import ky from "ky";
+import { getToken } from "./getToken";
 
 export interface ErrorResponse {
     error: string;
@@ -12,6 +13,12 @@ export const http = ky.create({
     retry: 3,
     credentials: "include",
     hooks: {
+        beforeRequest: [
+            async (req) => {
+                const token = localStorage.getItem("token") as string;
+                req.headers.set("user_id", token);
+            },
+        ],
         beforeError: [
             async (error) => {
                 const response = await error.response.json<ErrorResponse>();
