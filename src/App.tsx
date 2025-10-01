@@ -8,14 +8,16 @@ import {
     SidebarTrigger,
 } from "./components/ui/sidebar";
 import { useEffect } from "react";
+import { useStore } from "./stores/useStore";
 
 function App() {
     const { logName } = useParams();
+    const setSocket = useStore((state) => state.setSocket);
     useEffect(() => {
         const socket = new WebSocket(
             "wss://lopsidedly-empowering-squirrelfish.cloudpub.ru/ws/connect"
         );
-
+        setSocket(socket);
         socket.onopen = function (e) {
             console.log("[open] Соединение установлено");
             console.log("Отправляем данные на сервер");
