@@ -9,12 +9,18 @@ export const LogPage = () => {
     return (
         <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="flex gap-4">
-                <SimpleGanttChart />
-                <ChartPieLegend />
+                {/* <SimpleGanttChart /> */}
+                {/* <ChartPieLegend /> */}
             </div>
             <Card className="font-mono text-sm p-4 overflow-auto">
                 <CardTitle>Логи</CardTitle>
-                <JsonVisualizer data={{"@level":"info","@message":"Terraform version: 1.13.1","@timestamp":"2025-09-09T15:31:32.757289+03:00"}} />
+                <JsonVisualizer
+                    data={{
+                        "@level": "info",
+                        "@message": "Terraform version: 1.13.1",
+                        "@timestamp": "2025-09-09T15:31:32.757289+03:00",
+                    }}
+                />
             </Card>
         </div>
     );
