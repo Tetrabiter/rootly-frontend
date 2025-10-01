@@ -49,12 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     };
 
     return (
-        <Sidebar
-            {...props}
-            className={`transition-all duration-300 ease-in-out ${
-                isOpen ? "w-80" : "w-20"
-            }`}
-        >
+        <Sidebar {...props} className="transition-all duration-300 ease-in-out">
             <SidebarHeader>
                 <div className="pl-2 flex justify-between items-center">
                     <h1
@@ -64,16 +59,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     >
                         ROOTLY
                     </h1>
-                    <button
-                        onClick={toggleSidebar}
-                        className="p-2 border-2 rounded-lg hover:bg-gray-100 transition-colors"
-                    >
-                        {isOpen ? (
-                            <PanelRightClose className="w-4 h-4" />
-                        ) : (
-                            <PanelRightOpen className="w-4 h-4" />
-                        )}
-                    </button>
                 </div>
                 <div
                     className={`transition-all duration-300 ${
