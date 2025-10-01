@@ -124,7 +124,7 @@ export function DependencyTree({ data, onNodeClick, selectedNodeId }: Dependency
   };
 
   return (
-    <div className="flex h-full gap-4">
+    <div className="flex h-auto gap-4">
       {/* Дерево зависимостей */}
       <Card className="flex-1">
         <CardContent className="p-4">

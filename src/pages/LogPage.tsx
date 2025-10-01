@@ -86,8 +86,8 @@ export const LogPage = () => {
             "@timestamp": "2025-09-09T15:31:32.757289+03:00",
           }}
         />
-        <DependencyTree data={mockDependencyTree} />
       </Card>
+      <DependencyTree data={mockDependencyTree} />
     </div>
   );
 };
