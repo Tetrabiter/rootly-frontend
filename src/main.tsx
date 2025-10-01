@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
         <StrictMode>
             <Routes>
                 <Route element={<App />}>
-                    <Route path=":logName" element={<LogPage />} />
+                    <Route path=":logId" element={<LogPage />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Route>
             </Routes>

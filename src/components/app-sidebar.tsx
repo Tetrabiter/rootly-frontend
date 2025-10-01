@@ -26,7 +26,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
     const history = useStore((state) => state.history);
 
-    const { logName } = useParams();
+    const { logId } = useParams();
 
     const data = {
         versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
@@ -36,7 +36,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 items: history.map((item) => ({
                     title: item.name,
                     url: item.id,
-                    isActive: logName === item.id,
+                    isActive: logId === item.id,
                 })),
                 // [
                 //     {

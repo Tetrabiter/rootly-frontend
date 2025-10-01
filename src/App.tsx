@@ -9,9 +9,10 @@ import {
 } from "./components/ui/sidebar";
 import { useEffect } from "react";
 import { useStore } from "./stores/useStore";
+import { AppHeader } from "./components/app-header";
 
 function App() {
-    const { logName } = useParams();
+    const { logId } = useParams();
     const setSocket = useStore((state) => state.setSocket);
     useEffect(() => {
         const socket = new WebSocket(
@@ -51,18 +52,7 @@ function App() {
             <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
-                    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-                        <SidebarTrigger />
-                        {logName && (
-                            <>
-                                <Separator
-                                    orientation="vertical"
-                                    className="mr-2 data-[orientation=vertical]:h-4"
-                                />
-                                <Breadcrumb>{logName}</Breadcrumb>
-                            </>
-                        )}
-                    </header>
+                    <AppHeader />
                     <Outlet />
                 </SidebarInset>
             </SidebarProvider>
