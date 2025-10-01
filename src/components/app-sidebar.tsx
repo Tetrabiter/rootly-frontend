@@ -137,8 +137,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <FilesUploader />
         </div>
       </SidebarFooter>
-
-      <SidebarRail />
     </Sidebar>
   );
 }
