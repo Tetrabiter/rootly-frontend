@@ -16,7 +16,7 @@ function App() {
     // const setSocket = useStore((state) => state.setSocket);
     // useEffect(() => {
     //     const socket = new WebSocket(
-    //         "wss://lopsidedly-empowering-squirrelfish.cloudpub.ru/ws/connect"
+    //         import.meta.env.VITE_BACKEND_WS
     //     );
     //     setSocket(socket);
     //     // eslint-disable-next-line @typescript-eslint/no-unused-vars

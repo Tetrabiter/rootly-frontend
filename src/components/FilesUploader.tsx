@@ -65,7 +65,7 @@ export const FilesUploader = ({ className }: DropzoneProps) => {
       }, 200);
 
       await ky.post(
-        "https://lopsidedly-empowering-squirrelfish.cloudpub.ru/api/upload",
+        import.meta.env.VITE_BACKEND_WS + "api/upload",
         {
           body: formData,
         }
