@@ -17,6 +17,7 @@ import {
     DropzoneEmptyState,
     type DropzoneProps,
 } from "./ui/shadcn-io/dropzone";
+import { useHistory } from "@/stores/useHistory";
 
 // Тип для статуса загрузки
 type UploadStatus = "idle" | "uploading" | "success" | "error";
@@ -71,6 +72,8 @@ export const FilesUploader = ({ className }: DropzoneProps) => {
             clearInterval(progressInterval);
             setUploadProgress(100);
             setUploadStatus("success");
+
+
 
             // Автоматически сбрасываем статус через 3 секунды
             setTimeout(() => {

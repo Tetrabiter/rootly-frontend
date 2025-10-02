@@ -6,15 +6,9 @@ import { Card, CardTitle } from "@/components/ui/card";
 import { useFetch } from "@/hooks/useFetch";
 import { http } from "@/lib/http";
 import type { DependencyNode } from "@/types/dependency-tree";
+import type { JsonValue } from "@/types/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-//import { useParams } from "react-router";
-
-const mockJsonData = {
-    "@level": "info",
-    "@message": "Terraform version: 1.13.1",
-    "@timestamp": "2025-09-09T15:31:32.757289+03:00",
-};
 
 export const LogPage = () => {
     const mockDependencyTree: DependencyNode = {
@@ -95,7 +89,7 @@ export const LogPage = () => {
         analistic.fetchData();
     }, []);
 
-    const [json, setJson] = useState<unknown>(null);
+    const [json, setJson] = useState<JsonValue>(null);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4">
@@ -103,7 +97,7 @@ export const LogPage = () => {
             {!analistic.isLoading && analistic.response === "null" && (
                 <div>Данных по такому id нет</div>
             )}
-            {json !== null && (
+            {!!json && (
                 <>
                     <div className="flex gap-4">
                         <SimpleGanttChart />

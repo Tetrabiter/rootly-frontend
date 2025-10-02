@@ -1,5 +1,4 @@
 import ky from "ky";
-import { getToken } from "./getToken";
 
 export interface ErrorResponse {
     error: string;

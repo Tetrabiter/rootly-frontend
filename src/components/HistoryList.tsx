@@ -51,7 +51,7 @@ export const HistoryList = () => {
                             Ничего не нашлось .-.
                         </span>
                     )}
-                    {filteredHistory.map((item) => (
+                    {filteredHistory.reverse().map((item) => (
                         <SidebarMenuItem key={item.id}>
                             <SidebarMenuButton
                                 asChild
