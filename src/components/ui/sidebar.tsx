@@ -265,31 +265,31 @@ function Sidebar({
     );
 }
 
-function SidebarTrigger({
-    className,
-    onClick,
-    ...props
-}: React.ComponentProps<typeof Button>) {
-    const { toggleSidebar } = useSidebar();
+// function SidebarTrigger({
+//     className,
+//     onClick,
+//     ...props
+// }: React.ComponentProps<typeof Button>) {
+//     const { toggleSidebar } = useSidebar();
 
-    return (
-        <Button
-            data-sidebar="trigger"
-            data-slot="sidebar-trigger"
-            variant="ghost"
-            size="icon"
-            className={cn("size-7", className)}
-            onClick={(event) => {
-                onClick?.(event);
-                toggleSidebar();
-            }}
-            {...props}
-        >
-            <PanelLeftIcon />
-            <span className="sr-only">Toggle Sidebar</span>
-        </Button>
-    );
-}
+//     return (
+//         <Button
+//             data-sidebar="trigger"
+//             data-slot="sidebar-trigger"
+//             variant="ghost"
+//             size="icon"
+//             className={cn("size-7", className)}
+//             onClick={(event) => {
+//                 onClick?.(event);
+//                 toggleSidebar();
+//             }}
+//             {...props}
+//         >
+//             <PanelLeftIcon />
+//             <span className="sr-only">Toggle Sidebar</span>
+//         </Button>
+//     );
+// }
 
 function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
     const { toggleSidebar } = useSidebar();
@@ -743,6 +743,6 @@ export {
     SidebarProvider,
     SidebarRail,
     SidebarSeparator,
-    SidebarTrigger,
-    useSidebar,
+    // SidebarTrigger,
+    // useSidebar,
 };
