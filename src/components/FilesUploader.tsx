@@ -1,3 +1,15 @@
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { http } from "@/lib/http";
+import {
+    AlertCircle,
+    CheckCircle2,
+    FileText,
+    Loader2,
+    XCircle,
+} from "lucide-react";
 import { useState } from "react";
 import {
     Dropzone,
@@ -5,18 +17,6 @@ import {
     DropzoneEmptyState,
     type DropzoneProps,
 } from "./ui/shadcn-io/dropzone";
-import {
-    Loader2,
-    FileText,
-    CheckCircle2,
-    XCircle,
-    AlertCircle,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
-import { http } from "@/lib/http";
 
 // Тип для статуса загрузки
 type UploadStatus = "idle" | "uploading" | "success" | "error";

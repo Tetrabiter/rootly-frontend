@@ -1,7 +1,8 @@
-import { useStore } from "@/stores/useStore";
+import { useHistory } from "@/stores/useHistory";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useState } from "react";
 import { Link, useParams } from "react-router";
+import { SearchInput } from "./SearchInput";
 import {
     SidebarGroup,
     SidebarGroupContent,
@@ -10,12 +11,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "./ui/sidebar";
-import { SearchInput } from "./SearchInput";
 
 export const HistoryList = () => {
     const [search, setSearch] = useState("");
     const debouncedSearch = useDebounce(search, 200);
-    const history = useStore((state) => state.history);
+    const history = useHistory((state) => state.history);
     const { logName } = useParams();
     console.log("historylist");
     const isOpen = true;
