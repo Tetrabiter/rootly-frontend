@@ -1,7 +1,6 @@
 import { createStoreWithLoader } from "@/lib/createStoreWithLoader";
 import { getToken } from "@/lib/getToken";
 import { create } from "zustand";
-import { useHistory } from "./useHistory";
 
 export interface SocketStoreI {
     socket: WebSocket | null;
@@ -17,23 +16,18 @@ export const _useSocket = create<SocketStoreI>((set) => ({
 
 export const useSocket = createStoreWithLoader(_useSocket, async () => {
     const setSocket = _useSocket.getState().setSocket;
-    const addHistoryItem = useHistory.getState().addHistoryItem;
     const createWebsocket = async () => {
         const token = await getToken();
         const socket = new WebSocket(
             import.meta.env.VITE_BACKEND_WS + `?user_id=${token}`
         );
-        socket.onopen = function () {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        socket.onopen = function (e) {
             console.log("[open] Соединение установлено");
         };
 
         socket.onmessage = function (event) {
-            console.log(`[message] Файлик обработался: ${event.data}`);
-            const body: { result: string } = JSON.parse(event.data);
-            addHistoryItem({
-                id: body.result,
-                name: body.result,
-            });
+            console.log(`[message] Данные получены с сервера: ${event.data}`);
         };
 
         socket.onclose = function (event) {
