@@ -1,12 +1,8 @@
+import { Search } from "lucide-react";
 import type {
-    ComponentProps,
-    HTMLAttributes,
-    HTMLInputTypeAttribute,
+    ComponentProps
 } from "react";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { SidebarInput } from "./ui/sidebar";
-import { Search } from "lucide-react";
 
 export const SearchInput = (props: ComponentProps<"input">) => {
     return (
