@@ -6,9 +6,11 @@ import { Card, CardTitle } from "@/components/ui/card";
 import { useFetch } from "@/hooks/useFetch";
 import { http } from "@/lib/http";
 import type { DependencyNode } from "@/types/dependency-tree";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 //import { useParams } from "react-router";
+
+const mockJsonData = {"@level":"info","@message":"Terraform version: 1.13.1","@timestamp":"2025-09-09T15:31:32.757289+03:00"}
 
 export const LogPage = () => {
     const mockDependencyTree: DependencyNode = {
@@ -82,11 +84,14 @@ export const LogPage = () => {
         },
         onSuccess: (body) => {
             console.log("analistic", body);
+            setJson(JSON.parse(body));
         },
     });
     useEffect(() => {
         analistic.fetchData();
     }, []);
+
+    const [json, setJson] = useState<unknown>(null);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4">
@@ -94,16 +99,16 @@ export const LogPage = () => {
             {!analistic.isLoading && analistic.response === "null" && (
                 <div>Данных по такому id нет</div>
             )}
-            {!analistic.isLoading && analistic.response !== "null" && (
+            {mockJsonData !== null && (
                 <>
                     <div className="flex gap-4">
-                        <SimpleGanttChart />
-                        <ChartPieLegend />
+                        {/* <SimpleGanttChart /> */}
+                        {/* <ChartPieLegend /> */}
                     </div>
                     <Card className="font-mono text-sm p-4 overflow-auto">
                         <CardTitle>Логи</CardTitle>
                         <JsonVisualizer
-                            data={JSON.stringify(analistic.response)}
+                            data={mockJsonData}
                         />
                     </Card>
                     <DependencyTree data={mockDependencyTree} />
