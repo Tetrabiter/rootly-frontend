@@ -143,7 +143,6 @@ export const LogPage = () => {
             <CardTitle>Логи</CardTitle>
             <JsonVisualizer data={json} />
           </Card>
-          <DependencyTree data={mockDependencyTree} />
         </>
       )}
     </div>

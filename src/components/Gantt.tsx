@@ -151,10 +151,7 @@ const parseTerraformLogs = (logData: string[]): TerraformOperation[] => {
 };
 
 // Пример данных из логов (теперь это fallback)
-const exampleLogData = [
-  `{"@level":"info","@message":"Terraform version: 1.13.1","@timestamp":"2025-09-09T15:31:32.757289+03:00"}`,
-  `{"@level":"info","@message":"CLI args: []string{\\"terraform\\", \\"plan\\", \\"-json\\"}","@timestamp":"2025-09-09T15:31:32.757407+03:00"}`,
-];
+
 
 // Компонент Ганта
 const SimpleGantt = ({ operations }: { operations: TerraformOperation[] }) => {
