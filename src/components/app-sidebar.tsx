@@ -4,12 +4,9 @@ import {
     SidebarFooter,
     SidebarHeader,
 } from "@/components/ui/sidebar";
-import { useState, useCallback, memo, useEffect } from "react";
-import { useParams } from "react-router";
+import { memo, useCallback, useEffect, useState } from "react";
 import { FilesUploader } from "./FilesUploader";
 import { HistoryList } from "./HistoryList";
-import { http } from "@/lib/http";
-import { useHistory } from "@/stores/useHistory";
 
 // Мемоизируем тяжелые компоненты
 const MemoizedFilesUploader = memo(FilesUploader);

@@ -11,7 +11,6 @@ export const http = ky.create({
     prefixUrl: import.meta.env.VITE_BACKEND_HTTP,
     timeout: 10000,
     retry: 3,
-    credentials: "include",
     hooks: {
         beforeRequest: [
             async (req) => {

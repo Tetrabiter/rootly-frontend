@@ -10,7 +10,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 //import { useParams } from "react-router";
 
-const mockJsonData = {"@level":"info","@message":"Terraform version: 1.13.1","@timestamp":"2025-09-09T15:31:32.757289+03:00"}
+const mockJsonData = {
+    "@level": "info",
+    "@message": "Terraform version: 1.13.1",
+    "@timestamp": "2025-09-09T15:31:32.757289+03:00",
+};
 
 export const LogPage = () => {
     const mockDependencyTree: DependencyNode = {
@@ -84,7 +88,7 @@ export const LogPage = () => {
         },
         onSuccess: (body) => {
             console.log("analistic", body);
-            setJson(JSON.parse(body));
+            setJson(body.lines);
         },
     });
     useEffect(() => {
@@ -99,17 +103,15 @@ export const LogPage = () => {
             {!analistic.isLoading && analistic.response === "null" && (
                 <div>Данных по такому id нет</div>
             )}
-            {mockJsonData !== null && (
+            {json !== null && (
                 <>
                     <div className="flex gap-4">
-                        {/* <SimpleGanttChart /> */}
-                        {/* <ChartPieLegend /> */}
+                        <SimpleGanttChart />
+                        <ChartPieLegend />
                     </div>
                     <Card className="font-mono text-sm p-4 overflow-auto">
                         <CardTitle>Логи</CardTitle>
-                        <JsonVisualizer
-                            data={mockJsonData}
-                        />
+                        <JsonVisualizer data={json} />
                     </Card>
                     <DependencyTree data={mockDependencyTree} />
                 </>
