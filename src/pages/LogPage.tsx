@@ -126,7 +126,7 @@ export const LogPage = () => {
         analistic.fetchData();
     }, []);
 
-    const [json, setJson] = useState<JsonValue[]>();
+    const [json, setJson] = useState<JsonValue[]>([]);
 
     console.log("Log lines here:" + logLines);
 
