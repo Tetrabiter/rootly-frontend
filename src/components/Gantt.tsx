@@ -1,5 +1,3 @@
-"use client";
-
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 
