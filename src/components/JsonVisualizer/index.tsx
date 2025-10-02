@@ -1,14 +1,13 @@
-import { filterJsonObject } from "@/lib/JsonFilter/filterJson";
-import { parseFilterString } from "@/lib/JsonFilter/parsers";
+import { filterJsonObjectsArray } from "@/lib/JsonFilter/filterJson";
+import type { JsonObject } from "@/types/types";
 import { useDebounce } from "@uidotdev/usehooks";
 import React, { useState } from "react";
-import type { JsonValue } from "../../types/types";
 import { SearchInput } from "../SearchInput";
 import { JsonNode } from "./JsonNode";
 
 // Main JSON visualizer component
 interface JsonVisualizerProps {
-    data: JsonValue;
+    data: JsonObject[];
     initiallyExpanded?: boolean;
     className?: string;
 }
@@ -20,11 +19,15 @@ const JsonVisualizer: React.FC<JsonVisualizerProps> = ({
 }) => {
     const [filter, setFilter] = useState("");
     const debouncedFilter = useDebounce(filter, 200);
+
+    if (data === null) return "null";
+
     const filteredData = debouncedFilter
-        ? filterJsonObject(data, parseFilterString(debouncedFilter))
+        ? filterJsonObjectsArray(data, debouncedFilter)
         : data;
+
     return (
-        <div className={className}>
+        <div className={`flex flex-col gap-4 ${className}`}>
             <SearchInput
                 value={filter}
                 onChange={(e) => setFilter(e.currentTarget.value)}

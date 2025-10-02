@@ -1,4 +1,4 @@
-import { equals, notEquals } from "./operators";
+import { equals, notEquals, startsWith } from "./operators";
 
 export const parseValue = (value: string) => {
     if (value[0] === '"' || value[0] === "'")
@@ -28,6 +28,9 @@ export const parseFilter = (filter: string) => {
     } else if (filter.includes("!=")) {
         splitSubstr = "!=";
         result.operator = notEquals;
+    } else if (filter.includes("^=")) {
+        splitSubstr = "^=";
+        result.operator = startsWith;
     }
 
     if (splitSubstr) {
@@ -46,3 +49,6 @@ export const parseFilterString = (filterStr: string) => {
     const withoutRepeatedSpaces = filterStr.replace(/\s+/g, " ");
     return withoutRepeatedSpaces.split(" ");
 };
+
+export const parseFiltersString = (filtersStr: string) =>
+    parseFilterString(filtersStr).map((filter) => parseFilter(filter));

@@ -6,7 +6,7 @@ import { Card, CardTitle } from "@/components/ui/card";
 import { useFetch } from "@/hooks/useFetch";
 import { http } from "@/lib/http";
 import type { DependencyNode } from "@/types/dependency-tree";
-import type { JsonValue } from "@/types/types";
+import type { JsonObject } from "@/types/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
@@ -80,7 +80,7 @@ export const LogPage = () => {
         fetchFunc: () => {
             return http.get(`api/log_analistic/${logId}`);
         },
-        onSuccess: (body) => {
+        onSuccess: (body: { lines: JsonObject[] }) => {
             console.log("analistic", body);
             setJson(body.lines);
         },
@@ -89,7 +89,7 @@ export const LogPage = () => {
         analistic.fetchData();
     }, []);
 
-    const [json, setJson] = useState<JsonValue>(null);
+    const [json, setJson] = useState<JsonObject[]>([]);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4">

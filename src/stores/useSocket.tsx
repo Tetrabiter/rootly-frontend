@@ -17,6 +17,7 @@ export const _useSocket = create<SocketStoreI>((set) => ({
 
 export const useSocket = createStoreWithLoader(_useSocket, async () => {
     const setSocket = _useSocket.getState().setSocket;
+    const addHistoryItem = useHistory.getState().addHistoryItem;
     const createWebsocket = async () => {
         const token = await getToken();
         const socket = new WebSocket(
@@ -29,7 +30,7 @@ export const useSocket = createStoreWithLoader(_useSocket, async () => {
         socket.onmessage = function (event) {
             console.log(`[message] Файлик обработался: ${event.data}`);
             const body: { result: string } = JSON.parse(event.data);
-            useHistory.getState().addHistoryItem({
+            addHistoryItem({
                 id: body.result,
                 name: body.result,
             });

@@ -17,7 +17,6 @@ import {
     DropzoneEmptyState,
     type DropzoneProps,
 } from "./ui/shadcn-io/dropzone";
-import { useHistory } from "@/stores/useHistory";
 
 // Тип для статуса загрузки
 type UploadStatus = "idle" | "uploading" | "success" | "error";
@@ -27,7 +26,6 @@ export const FilesUploader = ({ className }: DropzoneProps) => {
     const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle");
     const [uploadProgress, setUploadProgress] = useState(0);
     const [errorMessage, setErrorMessage] = useState<string>("");
-
     const handleDrop = async (files: File[]) => {
         // Валидация JSON файлов
         const invalidFiles = files.filter((file) => {
@@ -72,8 +70,6 @@ export const FilesUploader = ({ className }: DropzoneProps) => {
             clearInterval(progressInterval);
             setUploadProgress(100);
             setUploadStatus("success");
-
-
 
             // Автоматически сбрасываем статус через 3 секунды
             setTimeout(() => {

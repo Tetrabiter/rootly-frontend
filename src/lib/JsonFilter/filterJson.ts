@@ -1,26 +1,32 @@
-import type { JsonValue } from "@/types/types";
-import { parseFilter } from "./parsers";
+import type { JsonObject } from "@/types/types";
+import { parseFiltersString } from "./parsers";
 
-export const filterJsonObject = (
-    data: { [key: string]: JsonValue },
-    filters: string[]
-) => {
+export const filterJsonObject = (data: JsonObject, filtersStr: string) => {
     const result: Partial<typeof data> = {};
-    for (const filter of filters) {
-        const parsedFilter = parseFilter(filter);
-        if (parsedFilter.key in data) {
-            if (
-                !(
-                    parsedFilter.operator &&
-                    parsedFilter.operator(
-                        data[parsedFilter.key],
-                        parsedFilter.value
-                    )
-                )
-            )
-                continue;
-            result[parsedFilter.key] = data[parsedFilter.key];
-        }
+    const filtersArr = parseFiltersString(filtersStr);
+    for (const filter of filtersArr) {
+        if (!(filter.key in data)) return;
+        if (filter.operator && !filter.operator(data[filter.key], filter.value))
+            return;
+        result[filter.key] = data[filter.key];
     }
     return result;
+};
+
+export const filterJsonObjectsArray = (
+    data: JsonObject[],
+    filtersStr: string
+) => {
+    const filtersArr = parseFiltersString(filtersStr);
+    return data.filter((obj) => {
+        for (const filter of filtersArr) {
+            if (!(filter.key in obj)) return false;
+            if (
+                filter.operator &&
+                !filter.operator(obj[filter.key], filter.value)
+            )
+                return false;
+        }
+        return true;
+    });
 };
