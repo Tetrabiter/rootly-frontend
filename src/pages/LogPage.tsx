@@ -5,12 +5,14 @@ import JsonVisualizer from "@/components/JsonVisualizer";
 import { ChartPieLegend } from "@/components/PieChart";
 import { Card, CardTitle } from "@/components/ui/card";
 import { useFetch } from "@/hooks/useFetch";
+import { exampleJson } from "@/lib/exampleJson";
 import { http } from "@/lib/http";
 import type { DependencyNode } from "@/types/dependency-tree";
-import type { JsonObject } from "@/types/types";
+import type { JsonObject, JsonValue } from "@/types/types";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { data, useParams } from "react-router";
 //import { useParams } from "react-router";
+import { Timeline } from "react-svg-timeline";
 
 const mockJsonData = {
     "@level": "info",
@@ -124,9 +126,25 @@ export const LogPage = () => {
         analistic.fetchData();
     }, []);
 
-    const [json, setJson] = useState<unknown>(null);
+    const [json, setJson] = useState<JsonValue[]>();
 
     console.log("Log lines here:" + logLines);
+
+    const lanes = [
+        {
+            laneId: "asd",
+            label: "Таймлайн",
+        },
+    ];
+    const events = json.map((val, index) => ({
+        eventId: index,
+        tooltip: val["@message"] ? val["@message"] : '',
+        laneId: "asd",
+        startTimeMillis: new Date(val["@timestamp"]).getTime(),
+        endTimeMillis: undefined,
+        // level: val["@level"],
+    }));
+    const dateFormat = (ms: number) => new Date(ms).toLocaleString();
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4">
@@ -137,16 +155,23 @@ export const LogPage = () => {
             {json !== null && (
                 <>
                     <div className="flex gap-4">
-                        <GanttChart
-                            data={[
-                                { level: "DEBUG", name: "asd", period: [0, 1] },
-                                { level: "DEBUG", name: "asd", period: [0, 1] },
-                                { level: "DEBUG", name: "asd", period: [0, 1] },
-                                { level: "DEBUG", name: "asd", period: [1, 1] },
-                            ]}
-                        />
-                        {/* <SimpleGanttChart logData={logLines} /> */}
+                        {/* <GanttChart data={chartData} />
+                        <SimpleGanttChart logData={logLines} />
                         <ChartPieLegend />
+                        <Timeline
+                            width={600}
+                            height={300}
+                            events={events}
+                            lanes={lanes}
+                            dateFormat={dateFormat}
+                        /> */}
+                        <Timeline
+                            width={1500}
+                            height={300}
+                            events={events}
+                            lanes={lanes}
+                            dateFormat={dateFormat}
+                        />
                     </div>
                     <Card className="font-mono text-sm p-4 overflow-auto">
                         <CardTitle>Логи</CardTitle>
